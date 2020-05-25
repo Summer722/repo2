@@ -1,0 +1,27 @@
+server:
+  port: 8183
+spring:
+  application:
+    name: search-service
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 192.168.25.130:9300
+  jackson:
+    default-property-inclusion: non_null # 配置json处理时忽略空值
+  rabbitmq:
+        host: 192.168.25.130
+        virtual-host: /leyou
+        username: leyou
+        password: leyou
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+#--------------Feign负载均衡配置 配置全局超时时间 毫秒单位   根据业务酌情配置
+ribbon:
+  ConnectTimeout: 5000 #请求连接的超时时间，默认时间为1秒
+  ReadTimeout: 5000 #请求处理的超时时间
